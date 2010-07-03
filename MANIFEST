@@ -1,0 +1,10 @@
+LICENSE
+MANIFEST
+Makefile.PL
+lib/Dpchrist/ShellScript.pm
+t/0_compile_modules.t
+t/1-Dpchrist-ShellScript.t
+t/2-ss_system.t
+t/9_pod.t
+t/9_prereq.t
+META.yml                                 Module meta-data (added by MakeMaker)
