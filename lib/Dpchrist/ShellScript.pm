@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: ShellScript.pm,v 1.5 2010-03-28 19:01:45 dpchrist Exp $
+# $Id: ShellScript.pm,v 1.7 2010-11-18 07:28:11 dpchrist Exp $
 #######################################################################
 # package/ uses/ requires:
 #----------------------------------------------------------------------
@@ -27,14 +27,14 @@ our @ISA = qw(Exporter);
 our @EXPORT = ();
 
 our %EXPORT_TAGS = ( 'all' => [ qw(
-    ss_system
+    ps1_system
 ) ] );
 
 our @EXPORT_OK = (
     @{ $EXPORT_TAGS{'all'} },
 );
 
-our $VERSION = sprintf "%d.%03d", q$Revision: 1.5 $ =~ /: (\d+)\.(\d+)/;
+our $VERSION = sprintf "%d.%03d", q$Revision: 1.7 $ =~ /: (\d+)\.(\d+)/;
 
 use Carp	qw( confess );
 
@@ -54,48 +54,40 @@ Dpchrist::ShellScript - utility functions for shell scripts
 
 #######################################################################
 
-=head3 ss_system
+=head3 ps1_system
 
-    ss_system LIST
+    ps1_system LIST
 
-Prints PS1,
+Prints '$ ',
 LIST items seperated by spaces,
 and newline to STDOUT,
-and then calls Perl's system() function using LIST for arguments.
-Returns true (1) on success.
-Otherwise, calls confess().
+and then returns by calling 'system LIST'.
 
 =cut
 
 #----------------------------------------------------------------------
 
-sub ss_system
+sub ps1_system
 {
     ddump('entry', [\@_], [qw(*_)]) if DEBUG;
 
     ddump([\%ENV], [qw(ENV)]) if DEBUG;
 
-    $ENV{PS1} ||= $0 . '$ ';
+#    $ENV{PS1} ||= $0 . '$ ';
 
-    my $format = $ENV{PS1};
-    ddump([$format], [qw(format)]) if DEBUG;
+#    my $format = $ENV{PS1};
+#    ddump([$format], [qw(format)]) if DEBUG;
 
-    my $ps1 = Env::PS1::sprintf( $format );
-    ddump([$ps1], [qw(ps1)]) if DEBUG;
+#    my $ps1 = Env::PS1::sprintf( $format );
+#    ddump([$ps1], [qw(ps1)]) if DEBUG;
 
     print
-	  $ps1,
-	  join(' ', @_),
-	  "\n";
+#	  $ps1,
+	'$ ',
+      	join(' ', @_),
+	"\n";
     
-    system @_
-	and confess join(' ',
-	    "$0 ERROR: system() failed:",
-	    Data::Dumper->Dump([\@_, $?], [qw(*_ ?)]),
-    );
-
-    dprint('returning 1') if DEBUG;
-    return 1;
+    return system @_;
 }
 
 #######################################################################

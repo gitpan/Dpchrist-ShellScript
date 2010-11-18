@@ -1,13 +1,13 @@
-# $Id: 2-ss_system.t,v 1.3 2010-03-28 18:47:55 dpchrist Exp $
+# $Id: 2_ps1_system.t,v 1.5 2010-11-18 07:28:11 dpchrist Exp $
 
 use strict;
 use warnings;
 
-use Dpchrist::ShellScript qw( ss_system );
+use Dpchrist::ShellScript qw( ps1_system );
 use Test::More tests => 2;
 
 use Capture::Tiny	qw( capture );
-use Carp		qw( confess );
+use Carp;
 use Data::Dumper;
 use Dpchrist::Debug	qw( :all );
 
@@ -23,12 +23,13 @@ my $stdout;
 $line = "echo 'hello, world!'";
 ($stdout, $stderr) = capture {
     $r = eval { 
-	ss_system $line;
+	ps1_system $line;
     };
 };
 ok(								#     1
-    $r
-    && $stdout =~ /${ps1}$line.*hello. world/s
+    !$@
+    && $r == 0
+    && $stdout =~ /$line\nhello\, world\!\n$/
     && $stderr eq ''
 ) or confess join(' ', __FILE__, __LINE__,
     Data::Dumper->Dump([$line, $r, $stdout, $stderr, $@],
@@ -36,10 +37,15 @@ ok(								#     1
 );
 
 $line = "/nosuchcommand";
-($stdout, $stderr) = capture { $r = eval { ss_system $line }; };
+($stdout, $stderr) = capture {
+    $r = eval {
+	ps1_system $line;
+    };
+};
 ok(								#     2
-    !defined $r
-    && $stdout eq "${ps1}$line\n"
+    !$@
+    && $r
+    && $stdout =~ /$line\n$/
     && $stderr =~ /Can't exec "$line": No such file or directory/
 ) or confess join(' ', __FILE__, __LINE__,
     Data::Dumper->Dump([$line, $r, $stdout, $stderr],
