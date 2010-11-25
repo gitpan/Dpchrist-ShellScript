@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Dpchrist-ShellScript
-version:            1.007
+version:            1.008
 abstract:           utility functions for shell scripts
 author:
     - David Christensen <dpchrist@holgerdanske.com>

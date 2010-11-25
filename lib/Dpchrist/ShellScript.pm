@@ -1,12 +1,11 @@
 #######################################################################
-# $Id: ShellScript.pm,v 1.7 2010-11-18 07:28:11 dpchrist Exp $
+# $Id: ShellScript.pm,v 1.8 2010-11-25 02:40:39 dpchrist Exp $
 #######################################################################
 # package/ uses/ requires:
 #----------------------------------------------------------------------
 
 package Dpchrist::ShellScript;
 
-use 5.010000;
 use strict;
 use warnings;
 
@@ -34,7 +33,7 @@ our @EXPORT_OK = (
     @{ $EXPORT_TAGS{'all'} },
 );
 
-our $VERSION = sprintf "%d.%03d", q$Revision: 1.7 $ =~ /: (\d+)\.(\d+)/;
+our $VERSION = sprintf "%d.%03d", q$Revision: 1.8 $ =~ /: (\d+)\.(\d+)/;
 
 use Carp	qw( confess );
 
