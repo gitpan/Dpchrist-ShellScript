@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: ShellScript.pm,v 1.8 2010-11-25 02:40:39 dpchrist Exp $
+# $Id: ShellScript.pm,v 1.9 2010-11-25 20:07:55 dpchrist Exp $
 #######################################################################
 # package/ uses/ requires:
 #----------------------------------------------------------------------
@@ -9,33 +9,11 @@ package Dpchrist::ShellScript;
 use strict;
 use warnings;
 
-require Exporter;
+our $VERSION = sprintf "%d.%03d", q$Revision: 1.9 $ =~ /(\d+)/g;
 
-use Dpchrist::Debug	qw( :all );
-use Dpchrist::Module;
-use Env::PS1;
+1;
 
-#######################################################################
-# package variables:
-#----------------------------------------------------------------------
-
-use constant                    DEBUG => 0;
-
-our @ISA = qw(Exporter);
-
-our @EXPORT = ();
-
-our %EXPORT_TAGS = ( 'all' => [ qw(
-    ps1_system
-) ] );
-
-our @EXPORT_OK = (
-    @{ $EXPORT_TAGS{'all'} },
-);
-
-our $VERSION = sprintf "%d.%03d", q$Revision: 1.8 $ =~ /: (\d+)\.(\d+)/;
-
-use Carp	qw( confess );
+__END__
 
 #######################################################################
 
@@ -46,80 +24,11 @@ Dpchrist::ShellScript - utility functions for shell scripts
 
 =head1 DESCRIPTION
 
-=head2 SUBROUTINES
+This module is obsolete.
 
-=cut
-
-
-#######################################################################
-
-=head3 ps1_system
-
-    ps1_system LIST
-
-Prints '$ ',
-LIST items seperated by spaces,
-and newline to STDOUT,
-and then returns by calling 'system LIST'.
-
-=cut
-
-#----------------------------------------------------------------------
-
-sub ps1_system
-{
-    ddump('entry', [\@_], [qw(*_)]) if DEBUG;
-
-    ddump([\%ENV], [qw(ENV)]) if DEBUG;
-
-#    $ENV{PS1} ||= $0 . '$ ';
-
-#    my $format = $ENV{PS1};
-#    ddump([$format], [qw(format)]) if DEBUG;
-
-#    my $ps1 = Env::PS1::sprintf( $format );
-#    ddump([$ps1], [qw(ps1)]) if DEBUG;
-
-    print
-#	  $ps1,
-	'$ ',
-      	join(' ', @_),
-	"\n";
-    
-    return system @_;
-}
-
-#######################################################################
-# end of code:
-#----------------------------------------------------------------------
-
-1;
-__END__
-
-#######################################################################
-
-=head2 EXPORT
-
-None by default.
-
-All of the subroutines may be imported by using the ':all' tag:
-
-    use Dpchrist::ShellScript		qw( :all );
-
-See 'perldoc Export' for everything in between.
-
-
-=head1 INSTALLATION
-
-    perl Makefile.PL
-    make
-    make test
-    make install
-
-
-=head1 DEPENDENCIES
-
-    Dpchrist::Module
+ps1_system() was moved to
+Dpchrist::LangUtil::echo_system() version 1.010
+on November 25, 2010.
 
 
 =head1 AUTHOR

@@ -1,9 +1,9 @@
 --- #YAML:1.0
 name:               Dpchrist-ShellScript
-version:            1.008
+version:            1.009
 abstract:           utility functions for shell scripts
 author:
-    - David Christensen <dpchrist@holgerdanske.com>
+    - David Paul Christensen <dpchrist@holgerdanske.com>
 license:            unknown
 distribution_type:  module
 configure_requires:
@@ -11,10 +11,7 @@ configure_requires:
 build_requires:
     ExtUtils::MakeMaker:  0
 requires:
-    Capture::Tiny:     0
-    Dpchrist::Debug:   1.036
-    Dpchrist::Module:  1.016
-    Env::PS1:          0
+    Dpchrist::Module:  1.021
     feature:           0
 no_index:
     directory:
