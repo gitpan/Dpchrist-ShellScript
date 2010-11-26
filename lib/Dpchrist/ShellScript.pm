@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: ShellScript.pm,v 1.9 2010-11-25 20:07:55 dpchrist Exp $
+# $Id: ShellScript.pm,v 1.10 2010-11-26 21:24:27 dpchrist Exp $
 #######################################################################
 # package/ uses/ requires:
 #----------------------------------------------------------------------
@@ -9,7 +9,7 @@ package Dpchrist::ShellScript;
 use strict;
 use warnings;
 
-our $VERSION = sprintf "%d.%03d", q$Revision: 1.9 $ =~ /(\d+)/g;
+our $VERSION = sprintf "%d.%03d", q$Revision: 1.10 $ =~ /(\d+)/g;
 
 1;
 

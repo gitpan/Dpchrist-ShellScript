@@ -1,5 +1,5 @@
 #######################################################################
-# $Id: Makefile.PL,v 1.6 2010-11-25 20:07:55 dpchrist Exp $
+# $Id: Makefile.PL,v 1.7 2010-11-26 21:24:27 dpchrist Exp $
 #
 # Copyright 2010 by David Paul Christensen dpchrist@holgerdanske.com
 #
@@ -20,20 +20,10 @@
 
 use ExtUtils::MakeMaker;
 
-use Dpchrist::Module::MakefilePL (
-    -mcpani		=> $ENV{CPAN_AUTHORID},
-    -pod2html	 	=> qw(lib/Dpchrist/ShellScript.pm),
-    -readme	 	=> qw(lib/Dpchrist/ShellScript.pm),
-    -release		=> $ENV{RELEASE_ROOT},
-);
-
 WriteMakefile(
     NAME		=> 'Dpchrist::ShellScript',
     VERSION_FROM	=> 'lib/Dpchrist/ShellScript.pm',
-    PREREQ_PM		=> {
-	'Dpchrist::Module'	=> 1.021,
-	'feature'		=> 0,
-    },
+    PREREQ_PM		=> {},
     ABSTRACT_FROM	=> 'lib/Dpchrist/ShellScript.pm',
     AUTHOR		=>
 	'David Paul Christensen <dpchrist@holgerdanske.com>',
@@ -41,3 +31,5 @@ WriteMakefile(
 	q( *~tmp */*~tmp Dpchrist* )
     },
 );
+
+#######################################################################
